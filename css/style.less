@@ -152,8 +152,8 @@ h6 {
 }
 
 .root {
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   position: relative;
   background: #141414;
 
@@ -184,18 +184,27 @@ h6 {
 
   .hero-container {
     position: relative;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-end;
 
-    video {
+    .video-container {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      flex: 1;
+      position: absolute;
+
+      video {
+        width: 100%;
+        height: -webkit-fill-available;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+      }
     }
 
-    &::before {
+    .video-container::after {
       content: "";
       position: absolute;
       top: 0;
@@ -206,14 +215,14 @@ h6 {
     }
 
     .hero-wrapper {
-      position: absolute;
+      position: relative;
       bottom: 0;
       width: 100%;
       height: fit-content;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      padding: 0 56px 72px;
+      padding: 160px 56px 72px;
       align-items: center;
 
       .text-container {
@@ -262,17 +271,17 @@ h6 {
         .top-label {
           width: 100%;
           height: 40px;
-          border-bottom: 1px solid rgba(0, 53, 48, 20%);
           position: absolute;
           left: 0;
-          padding-bottom: 12px;
 
           .form-label {
-            width: fit-content;
+            width: 100%;
             padding-left: 20px;
             font-family: "SF-Medium";
             font-size: 1.24rem;
             color: var(--color-primary-darker);
+            border-bottom: 1px solid rgba(0, 53, 48, 20%);
+            padding-bottom: 12px;
 
             span {
               font-family: "SF-Bold";
@@ -452,7 +461,7 @@ h6 {
       display: flex;
       flex-direction: column;
       gap: 32px;
-      position: absolute;
+      position: relative;
       left: 0;
       bottom: 0;
       width: 100%;
@@ -526,14 +535,14 @@ h6 {
       position: relative;
       width: 100%;
       height: auto;
-      padding: 40px 72px 240px;
+      padding: 40px 0px 40px;
 
       .item-container {
         display: flex;
         flex-direction: row;
         gap: 72px;
         width: 100%;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items: center;
 
         .text-container {
@@ -776,10 +785,10 @@ h6 {
 @media only screen and (max-width: 1100px) {
   .root {
     .navigation-container {
-      padding: 40px 72px;
+      padding: 40px 56px;
 
       .logo img {
-        width: 5.5rem;
+        width: 4.25rem;
       }
 
       .items-container {
@@ -793,8 +802,15 @@ h6 {
       }
     }
 
+    .hero-container {
+      .hero-wrapper {
+        justify-content: unset;
+        gap: 40px;
+      }
+    }
+
     .why-us-container {
-      padding: 100px 72px;
+      padding: 96px 56px;
       gap: 56px;
 
       .content-container {
@@ -827,34 +843,35 @@ h6 {
     }
 
     .our-services-container {
-      padding: 100px 72px;
+      padding: 96px 56px;
 
       .content-container {
         gap: 20px;
       }
 
       .slider-container {
-        bottom: -160px;
         .inner-slider-container {
           .splide__track {
             .splide__list {
               .card-container {
-                .img-card {
-                  padding: 12px;
-                  height: 88px;
+                a {
+                  .img-card {
+                    padding: 12px;
+                    height: 88px;
 
-                  img {
-                    width: 4rem;
+                    img {
+                      width: 4rem;
+                    }
                   }
-                }
 
-                .text-card {
-                  padding: 20px;
-                  height: 88px;
+                  .text-card {
+                    padding: 20px;
+                    height: 88px;
 
-                  p {
-                    font-size: 1.25rem;
-                    line-height: 26px;
+                    p {
+                      font-size: 1.25rem;
+                      line-height: 26px;
+                    }
                   }
                 }
               }
@@ -864,38 +881,8 @@ h6 {
       }
     }
 
-    .packages-container {
-      margin-top: 260px;
-      padding: 100px 72px;
-      gap: 56px;
-
-      .content-container {
-        gap: 20px;
-
-        span {
-          font-size: 1.08rem;
-        }
-
-        h1 {
-          font-size: 3rem;
-          line-height: 60px;
-        }
-      }
-
-      .packs-container {
-        gap: 32px;
-        flex-direction: column;
-
-        .package {
-          flex: auto;
-          // height: 280px;
-          width: 100%;
-        }
-      }
-    }
-
     .footer-container {
-      padding: 100px 72px;
+      padding: 96px 56px;
 
       .inner-container {
         .links-section {
@@ -909,10 +896,10 @@ h6 {
 @media only screen and (max-width: 768px) {
   .root {
     .navigation-container {
-      padding: 32px 48px;
+      padding: 32px 40px;
 
       .logo img {
-        width: 6.5rem;
+        width: 4.75rem;
       }
 
       .items-container {
@@ -922,6 +909,86 @@ h6 {
       .cta-btn {
         padding: 8px 20px;
         font-size: 1.16rem;
+      }
+    }
+
+    .hero-container {
+      .video-container {
+        position: absolute;
+
+        video {
+          height: -webkit-fill-available;
+        }
+      }
+
+      .hero-wrapper {
+        height: -webkit-fill-available;
+        flex-direction: column;
+        justify-content: unset;
+        padding: 160px 40px 64px;
+        align-items: baseline;
+
+        .text-container {
+          max-width: 100%;
+        }
+
+        .form-container {
+          min-height: 448px;
+          max-width: 100%;
+          width: 100%;
+
+          .form-content {
+            // align-self: flex-end;
+            // gap: 64px;
+
+            .text-container {
+              max-width: 100%;
+
+              .input {
+                border: 1px solid rgba(0, 0, 0, 0.08);
+                padding: 8px 12px;
+                border-radius: 6px;
+                background: #fafafa;
+                font-family: "SF-Medium";
+                color: #131313;
+
+                &.submit {
+                  font-family: "SF-Bold";
+                  background: #00786d;
+                  color: #fff;
+                  font-size: 1.08rem;
+                }
+              }
+
+              .input::placeholder {
+                color: #535353;
+                opacity: 1; /* Firefox */
+              }
+            }
+
+            .submit {
+              border: none;
+              padding: 8px 12px;
+              border-radius: 6px;
+              background: #fafafa;
+              font-family: "SF-Bold";
+              background: #00786d;
+              color: #fff;
+              font-size: 1.08rem;
+              cursor: pointer;
+              box-shadow: inset 0 0 0 0 #fff;
+              -webkit-transition: ease-out 0.4s;
+              -moz-transition: ease-out 0.4s;
+              transition: ease-out 0.4s;
+            }
+
+            .submit:hover {
+              box-shadow: inset 0 100px 0 0 #fff;
+              border: 1px solid rgba(0, 0, 0, 0.01);
+              color: #141414;
+            }
+          }
+        }
       }
     }
 
@@ -965,27 +1032,29 @@ h6 {
       }
 
       .slider-container {
-        bottom: -140px;
+        bottom: 0;
         .inner-slider-container {
           .splide__track {
             .splide__list {
               .card-container {
-                .img-card {
-                  padding: 12px;
-                  height: 72px;
+                a {
+                  .img-card {
+                    padding: 12px;
+                    height: 72px;
 
-                  img {
-                    width: 3rem;
+                    img {
+                      width: 3rem;
+                    }
                   }
-                }
 
-                .text-card {
-                  padding: 20px;
-                  height: 72px;
+                  .text-card {
+                    padding: 20px;
+                    height: 72px;
 
-                  p {
-                    font-size: 1.15rem;
-                    line-height: 26px;
+                    p {
+                      font-size: 1.15rem;
+                      line-height: 26px;
+                    }
                   }
                 }
               }
@@ -1068,7 +1137,7 @@ h6 {
       padding: 24px 32px;
 
       .logo img {
-        width: 5.5rem;
+        width: 4.75rem;
       }
 
       .items-container {
@@ -1078,6 +1147,19 @@ h6 {
       .cta-btn {
         padding: 8px 12px;
         font-size: 1rem;
+      }
+    }
+
+    .hero-container {
+      .hero-wrapper {
+        padding: 160px 32px 64px;
+
+        .form-container {
+          .form-content {
+            align-self: flex-end;
+            gap: 80px;
+          }
+        }
       }
     }
 
@@ -1127,27 +1209,29 @@ h6 {
       }
 
       .slider-container {
-        bottom: -160px;
+        bottom: 0;
         .inner-slider-container {
           .splide__track {
             .splide__list {
               .card-container {
-                .img-card {
-                  padding: 12px;
-                  height: 72px;
+                a {
+                  .img-card {
+                    padding: 12px;
+                    height: 72px;
 
-                  img {
-                    width: 3rem;
+                    img {
+                      width: 3rem;
+                    }
                   }
-                }
 
-                .text-card {
-                  padding: 20px;
-                  height: 72px;
+                  .text-card {
+                    padding: 20px;
+                    height: 72px;
 
-                  p {
-                    font-size: 1.15rem;
-                    line-height: 26px;
+                    p {
+                      font-size: 1.15rem;
+                      line-height: 26px;
+                    }
                   }
                 }
               }
@@ -1208,7 +1292,7 @@ h6 {
 @media only screen and (max-width: 400px) {
   .root {
     .navigation-container {
-      padding: 24px 24px;
+      padding: 24pxpx;
     }
 
     .why-us-container {
@@ -1272,7 +1356,7 @@ h6 {
       }
 
       .slider-container {
-        bottom: -140px;
+        bottom: 0;
         gap: 24px;
         .inner-slider-container {
           .splide__track {
